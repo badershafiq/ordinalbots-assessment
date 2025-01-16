@@ -6,17 +6,6 @@ export default {
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
-  // theme: {
-  //   fontFamily: {
-  //     inter: ["Inter", "sans-serif"],
-  //   },
-  //   extend: {
-  //     colors: {
-  //       background: "var(--background)",
-  //       foreground: "var(--foreground)",
-  //     },
-  //   },
-  // },
   theme: {
     extend: {
       animation: {
