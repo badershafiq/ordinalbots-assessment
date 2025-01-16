@@ -1,13 +1,10 @@
 import axios from "axios";
-import { NextResponse } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
 
 const apiKey = process.env.ORDINALSBOT_API_KEY;
 
-export async function GET(
-  request: Request,
-  { params }: { params: { id: string } }
-) {
-  const { id } = await params;
+export async function GET(request: NextRequest) {
+  const id = request.nextUrl.pathname.split("/").pop(); // Extract the dynamic "id" from the URL
 
   if (!id) {
     return NextResponse.json(
@@ -28,6 +25,9 @@ export async function GET(
   } catch (error) {
     console.error("Error fetching Order details:", error);
 
-    return NextResponse.json({ error }, { status: 500 });
+    return NextResponse.json(
+      { error: error instanceof Error ? error.message : "Unknown error" },
+      { status: 500 }
+    );
   }
 }
