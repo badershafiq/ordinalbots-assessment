@@ -1,36 +1,117 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# OrdinalBots Assessment
 
-## Getting Started
+This is a **Next.js** application built with **TypeScript** that leverages the **OrdinalsBot API** and **Blockchain** to display Bitcoin-related data, user-specific order details, and BRC-20 token balances. The app also supports wallet integration for a personalized experience.
 
-First, run the development server:
+## Key Features
+
+- **Dynamic Order Details:**
+  View comprehensive details for specific orders on the `/orders` route.
+- **BRC-20 Token Balances:**
+  Fetch and display balances for BRC-20 tokens on the `/balance` route.
+- **Real-Time BTC Data:**
+  Display the current Bitcoin price and block height.
+- **Wallet Integration:**
+  Seamlessly connect wallets using context, ensuring consistency throughout the app.
+
+- **React Query for Data Fetching:**
+  Efficient API interaction with caching and state management.
+
+## Project Setup
+
+Follow these steps to set up and run the project locally:
+
+### 1. Clone the Repository
+
+```bash
+git clone <repo-url>
+cd ordinalbots-assessment
+```
+
+### 2. Install Dependencies
+
+```bash
+npm install
+```
+
+### 3. Configure Environment Variables
+
+Copy the `.env.example` file and create a `.env` file in the root directory:
+
+```bash
+cp .env.example .env
+```
+
+Fill in the following variables in your `.env` file:
+
+```env
+ORDINALSBOT_API_URL=your_ordinalsbot_api_url
+ORDINALSBOT_API_KEY=your_ordinalsbot_api_key
+```
+
+### 4. Run the Development Server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The app will be available at [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Application Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### API Routes
 
-## Learn More
+1. **BRC-20 Balance API**
 
-To learn more about Next.js, take a look at the following resources:
+   - **Endpoint:** `/api/brc20balance`
+   - **Method:** `GET`
+   - **Query Parameters:**
+     - `address` (required): Wallet address to fetch the balance.
+     - `ticker` (required): BRC-20 ticker.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+2. **BTC Block Height API**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+   - **Endpoint:** `/api/brc20balance/btcHeight`
+   - **Method:** `GET`
 
-## Deploy on Vercel
+3. **BTC Price API**
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+   - **Endpoint:** `/api/btcPrice`
+   - **Method:** `GET`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+4. **Order Details API**
+   - **Endpoint:** `/api/order/[id]`
+   - **Method:** `GET`
+   - **Path Parameters:**
+     - `id` (required): Order ID to fetch details.
+
+### Frontend Routes
+
+1. **`/`:**  
+   Displays wallet status and Bitcoin height, Price data.
+
+2. **`/orders`:**  
+   Displays user-specific order details.
+
+3. **`/balance`:**  
+   Displays wallet balances and BRC-20 token details.
+
+### Additional Features
+
+- **Global Wallet Context:**  
+  Ensures the same wallet is accessible across the entire app.
+
+- **React Query Integration:**  
+  Simplifies API data fetching, caching, and synchronization.
+
+## Technologies Used
+
+- **Frontend:** Next.js, TypeScript, React Context
+- **API:** Axios, OrdinalsBot API, Coingecko
+- **State Management:** React Query
+- **Environment Configuration:** `.env` for managing sensitive keys.
+
+## Future Improvements
+
+- Add tests for API endpoints and frontend components.
+- Improve UI/UX with responsive design and animations.
+- Integrate additional blockchain APIs for enhanced functionality.
